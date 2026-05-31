@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ACCWISE Accountants Website
 
-## Getting Started
+Next.js website build for ACCWISE Accountants.
 
-First, run the development server:
+## Stack
+
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS 4
+- shadcn-compatible local UI primitives
+- Framer Motion, Anime.js, Lucide icons
+
+## Routes
+
+- `/` - homepage
+- `/services` - service routes and anchors
+- `/about` - firm approach and provisional launch-safety copy
+- `/contact` - callback enquiry form
+- `/faqs` - FAQ accordion
+- `/free-consultation` - QR landing page for the Free Accounting Health Check
+
+## Local Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run test:site
+npm run lint
+npm run build
+```
 
-## Learn More
+## Content Safety Notes
 
-To learn more about Next.js, take a look at the following resources:
+- ACCWISE business-card details are used as provisional source material.
+- Do not add unconfirmed qualifications, regulatory memberships, awards, addresses, review counts, guarantees, or real testimonials unless approved by the client.
+- Homepage testimonials are currently mock/sample placeholders and are visibly labelled for replacement before launch.
+- Crafto was used only as a structure and rhythm reference; do not copy Crafto assets, code, copy, testimonials, or exact identity.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Assets
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Public web assets used by the app live under `public/assets/`.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Raw collected source assets and Brain-Vault planning notes are intentionally kept outside this website repo.
