@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ACCWISE draft rebuilt logo mark</title>
+  <desc id="desc">Draft circular AW mark rebuilt from the ACCWISE business-card photo reference. Pending official client logo files.</desc>
+  <g fill="none" fill-rule="evenodd">
+    <circle cx="256" cy="256" r="196" stroke="#214B70" stroke-width="30"/>
+    <path d="M137 336 L228 166 L276 166 L178 336 Z" fill="#214B70"/>
+    <path d="M245 170 L288 336 L316 245 L348 336 L393 170" stroke="#2F6F35" stroke-width="48" stroke-linecap="butt" stroke-linejoin="miter"/>
+  </g>
+</svg>
