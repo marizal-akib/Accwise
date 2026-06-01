@@ -16,54 +16,75 @@ const featureCards = [
     title: "Reduce Tax Stress",
     description:
       "We help you understand what you owe, what you can claim, and what needs to be submitted before deadlines.",
-    icon: (
-      <>
-        <Calculator
-          className="size-12 text-accwise-blue sm:size-14"
-          strokeWidth={1.8}
-        />
-        <PoundSterling
-          className="absolute -right-1 top-1 size-6 text-accwise-green"
-          strokeWidth={2.2}
-        />
-      </>
-    ),
+    icon: <TaxStressIcon />,
   },
   {
     title: "Stay HMRC Ready",
     description:
       "Accounts, payroll, VAT, and MTD support designed to keep your records clean and compliant.",
-    icon: (
-      <>
-        <Shield
-          className="size-12 text-accwise-blue sm:size-14"
-          strokeWidth={1.8}
-        />
-        <Check
-          className="absolute left-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 text-accwise-green"
-          strokeWidth={2.5}
-        />
-      </>
-    ),
+    icon: <HmrcReadyIcon />,
   },
   {
     title: "Speak to an Accountant",
     description:
       "Use the free consultation form and get clear guidance without wasting time searching online.",
-    icon: (
-      <>
-        <CalendarDays
-          className="size-12 text-accwise-blue sm:size-14"
-          strokeWidth={1.8}
-        />
-        <PhoneCall
-          className="absolute -right-1 top-0 size-6 text-accwise-green"
-          strokeWidth={2.2}
-        />
-      </>
-    ),
+    icon: <AccountantIcon />,
   },
 ];
+
+function TaxStressIcon() {
+  return (
+    <>
+      <Calculator
+        aria-hidden="true"
+        className="accwise-icon-static size-12 overflow-visible text-accwise-blue sm:size-14"
+        strokeWidth={1.8}
+      />
+      <PoundSterling
+        aria-hidden="true"
+        className="accwise-icon-accent accwise-icon-accent-float absolute -right-1 top-1 size-6 text-accwise-green"
+        data-accwise-icon-motion="true"
+        strokeWidth={2.2}
+      />
+    </>
+  );
+}
+
+function HmrcReadyIcon() {
+  return (
+    <>
+      <Shield
+        aria-hidden="true"
+        className="accwise-icon-static size-12 overflow-visible text-accwise-blue sm:size-14"
+        strokeWidth={1.8}
+      />
+      <Check
+        aria-hidden="true"
+        className="accwise-icon-accent accwise-icon-accent-pulse absolute left-1/2 top-1/2 size-6 -translate-x-1/2 -translate-y-1/2 text-accwise-green"
+        data-accwise-icon-motion="true"
+        strokeWidth={2.5}
+      />
+    </>
+  );
+}
+
+function AccountantIcon() {
+  return (
+    <>
+      <CalendarDays
+        aria-hidden="true"
+        className="accwise-icon-static size-12 overflow-visible text-accwise-blue sm:size-14"
+        strokeWidth={1.8}
+      />
+      <PhoneCall
+        aria-hidden="true"
+        className="accwise-icon-accent accwise-icon-accent-float absolute -right-1 top-0 size-6 text-accwise-green"
+        data-accwise-icon-motion="true"
+        strokeWidth={2.2}
+      />
+    </>
+  );
+}
 
 export function FeatureCards() {
   const root = useLucideDrawerAnimation();

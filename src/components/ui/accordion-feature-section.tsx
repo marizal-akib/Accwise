@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { useRef, useState } from "react";
 
 import {
   Accordion,
@@ -41,6 +43,10 @@ const defaultFeatures: FeatureItem[] = [
 const Feature197 = ({
   features = defaultFeatures,
 }: Feature197Props) => {
+  const visualRef = useRef<HTMLDivElement | null>(null);
+  const isVisualInView = useInView(visualRef, { amount: 0.42, once: true });
+  const shouldReduceMotion = useReducedMotion();
+  const showVisual = Boolean(shouldReduceMotion || isVisualInView);
   const firstFeatureValue = features[0] ? `item-${features[0].id}` : undefined;
   const [activeValue, setActiveValue] = useState<string | undefined>(
     firstFeatureValue,
@@ -90,22 +96,55 @@ const Feature197 = ({
               ))}
             </Accordion>
 
-            <div className="relative order-1 flex min-h-[260px] items-center justify-center overflow-hidden md:order-2 md:min-h-[360px]">
-              <div className="relative flex aspect-square w-full max-w-[320px] items-center justify-center overflow-hidden bg-transparent md:max-w-[430px]">
-                <video
-                  aria-label="ACCWISE animated preview"
-                  autoPlay
-                  className="relative aspect-square w-full scale-[1.1] object-contain mix-blend-multiply [filter:brightness(1.18)_contrast(1.12)_saturate(1.05)] [mask-image:radial-gradient(circle,black_0%,black_58%,transparent_76%)] [-webkit-mask-image:radial-gradient(circle,black_0%,black_58%,transparent_76%)]"
-                  loop
-                  muted
-                  playsInline
-                >
-                  <source
-                    src="/assets/media/accwise-ring-preview.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
+            <div
+              className="relative order-1 flex min-h-[260px] items-center justify-center overflow-hidden md:order-2 md:min-h-[360px]"
+              ref={visualRef}
+            >
+              <motion.div
+                animate={
+                  showVisual
+                    ? {
+                        filter: "blur(0px) brightness(1)",
+                        opacity: 1,
+                        scale: 1,
+                        y: 0,
+                      }
+                    : {
+                        filter: "blur(8px) brightness(1.18)",
+                        opacity: 0,
+                        scale: 0.86,
+                        y: 54,
+                      }
+                }
+                className="relative flex aspect-square w-full max-w-[280px] items-center justify-center overflow-visible bg-transparent md:max-w-[360px]"
+                initial={shouldReduceMotion ? false : undefined}
+                transition={{
+                  duration: 0.68,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <motion.div
+                  aria-hidden="true"
+                  animate={
+                    showVisual
+                      ? { opacity: [0, 0.42, 0], scale: [0.62, 1.06, 1.28], y: [34, -8, -18] }
+                      : { opacity: 0, scale: 0.62, y: 34 }
+                  }
+                  className="pointer-events-none absolute bottom-8 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.46),rgba(33,75,112,0.18)_48%,transparent_72%)] blur-md"
+                  initial={false}
+                  transition={{
+                    duration: 0.82,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                />
+                <Image
+                  alt="ACCWISE Accountants logo mark"
+                  className="relative h-auto w-[78%] object-contain drop-shadow-[0_24px_48px_rgba(33,75,112,0.14)]"
+                  height={360}
+                  src="/assets/brand/accwise-logo-mark.svg"
+                  width={360}
+                />
+              </motion.div>
             </div>
           </div>
       </div>

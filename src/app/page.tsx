@@ -1,4 +1,5 @@
 import { AnimatedWaveDivider } from "@/components/AnimatedWaveDivider";
+import { AboutSupportBars } from "@/components/AboutSupportBars";
 import { CtaLink } from "@/components/CtaLink";
 import { FeatureCards } from "@/components/FeatureCards";
 import { PracticalVisual } from "@/components/PracticalVisual";
@@ -9,7 +10,7 @@ import { IconGrid, type IconGridItem } from "@/components/ui/icon-set";
 import TestimonialSlider, {
   type Testimonial,
 } from "@/components/ui/testimonial-slider";
-import { commitments, faqItems, serviceAreas } from "@/lib/site-data";
+import { faqItems, serviceAreas } from "@/lib/site-data";
 
 const heroImage =
   "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=2200&q=80";
@@ -182,19 +183,7 @@ export default function Home() {
               conversations. Official details remain pending client confirmation
               before launch.
             </p>
-            <div className="mt-7 grid gap-4 sm:grid-cols-2">
-              {commitments.map((item) => (
-                <div
-                  className="rounded-lg bg-white p-5 shadow-[0_16px_40px_rgba(22,37,66,0.06)]"
-                  key={item}
-                >
-                  <p className="font-semibold text-accwise-navy">{item}</p>
-                  <div className="mt-4 h-2 rounded-full bg-accwise-offwhite">
-                    <div className="h-2 rounded-full bg-accwise-green" />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <AboutSupportBars />
           </div>
         </div>
       </section>

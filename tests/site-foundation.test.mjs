@@ -54,9 +54,10 @@ test("home page replaces the scaffold with ACCWISE copy", () => {
   assert.doesNotMatch(page, /Deploy Now/);
 });
 
-test("home feature cards use final copy and animated Lucide icons", () => {
+test("home feature cards use final copy and old-style Lucide animated accent icons", () => {
   const featureCards = read("src/components/FeatureCards.tsx");
   const animationHook = read("src/components/ui/lucide-icon-drawer.tsx");
+  const globals = read("src/app/globals.css");
   const packageJson = read("package.json");
 
   [
@@ -66,12 +67,18 @@ test("home feature cards use final copy and animated Lucide icons", () => {
     "Accounts, payroll, VAT, and MTD support designed to keep your records clean and compliant.",
     "Speak to an Accountant",
     "Use the free consultation form and get clear guidance without wasting time searching online.",
+    "TaxStressIcon",
+    "HmrcReadyIcon",
+    "AccountantIcon",
     "Calculator",
     "PoundSterling",
     "Shield",
     "Check",
     "CalendarDays",
     "PhoneCall",
+    "accwise-icon-static",
+    "accwise-icon-accent",
+    "data-accwise-icon-motion",
   ].forEach((copy) => {
     assert.match(featureCards, new RegExp(copy.replaceAll("?", "\\?")));
   });
@@ -79,7 +86,12 @@ test("home feature cards use final copy and animated Lucide icons", () => {
   assert.match(animationHook, /prefers-reduced-motion: reduce/);
   assert.match(animationHook, /IntersectionObserver/);
   assert.match(animationHook, /startAnimation/);
+  assert.match(animationHook, /\[data-accwise-icon-motion\] path/);
+  assert.match(animationHook, /svgElements\.length === 0/);
   assert.match(animationHook, /svg\.createDrawable/);
+  assert.doesNotMatch(animationHook, /svg path, svg circle, svg polyline, svg line, svg rect/);
+  assert.match(globals, /@keyframes accwise-icon-accent-float/);
+  assert.match(globals, /@keyframes accwise-icon-accent-pulse/);
   assert.match(packageJson, /"animejs"/);
 });
 
@@ -135,6 +147,7 @@ test("site data includes accountancy card services and commitments", () => {
 
 test("minimal shadcn gallery carousel files and dependencies exist", () => {
   [
+    "src/components/AboutSupportBars.tsx",
     "src/components/AnimatedWaveDivider.tsx",
     "src/components/ui/button.tsx",
     "src/components/ui/carousel.tsx",
@@ -223,6 +236,10 @@ test("homepage shared chrome avoids hard section separator borders", () => {
   assert.doesNotMatch(homePage, /border border-accwise-border/);
   assert.doesNotMatch(faqFeature, /border border-accwise-border/);
   assert.match(faqFeature, /border-b-0 px-5/);
+  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.42, once: true \}\)/);
+  assert.match(faqFeature, /blur\(8px\) brightness\(1\.18\)/);
+  assert.match(faqFeature, /ACCWISE Accountants logo mark/);
+  assert.match(faqFeature, /accwise-logo-mark\.svg/);
 });
 
 test("homepage polish uses adapted ACCWISE badge, centered service cards, and white footer", () => {
@@ -252,6 +269,46 @@ test("homepage polish uses adapted ACCWISE badge, centered service cards, and wh
   assert.doesNotMatch(footer, /<div className="bg-white text-accwise-charcoal">/);
   assert.match(footer, /w-64 max-w-full/);
   assert.match(globals, /@keyframes accwise-skeleton-shimmer/);
+});
+
+test("homepage about section keeps visual card and uses two animated brand bars", () => {
+  const page = read("src/app/page.tsx");
+  const aboutBars = read("src/components/AboutSupportBars.tsx");
+  const practicalVisual = read("src/components/PracticalVisual.tsx");
+
+  assert.match(page, /<AboutSupportBars \/>/);
+  assert.match(page, /<PracticalVisual imageUrl=\{aboutImage\} \/>/);
+  assert.match(aboutBars, /CLARITY/);
+  assert.match(aboutBars, /COMPLIANCE/);
+  assert.match(aboutBars, /#214B70/);
+  assert.match(aboutBars, /#2F6F35/);
+  assert.match(aboutBars, /useInView\(root, \{ amount: 0\.35, once: true \}\)/);
+  assert.match(aboutBars, /useReducedMotion/);
+  assert.match(aboutBars, /width: isFilled \? bar\.targetWidth : "0%"/);
+  assert.match(aboutBars, /initial=\{shouldReduceMotion \? false : \{ width: "0%" \}\}/);
+  assert.match(aboutBars, /delay: index \* 0\.18/);
+  assert.match(aboutBars, /rounded-l-full/);
+  assert.match(aboutBars, /rounded-r-none/);
+  assert.match(aboutBars, /bg-transparent/);
+  assert.match(aboutBars, /maskImage/);
+  assert.match(aboutBars, /transparent 100%/);
+  assert.match(aboutBars, /rgba\(33,75,112,0\)/);
+  assert.match(aboutBars, /rgba\(47,111,53,0\)/);
+  assert.doesNotMatch(page, /commitments\.map/);
+  assert.doesNotMatch(page, /Accounts, Tax & VAT/);
+  assert.doesNotMatch(page, /Self-assessment, company accounts, VAT and bookkeeping support\./);
+  assert.doesNotMatch(page, /Payroll, CIS & MTD/);
+  assert.doesNotMatch(page, /Payroll, contractor records, CIS returns and digital accounting support\./);
+  assert.doesNotMatch(page, /Self-employed & companies accepted/);
+  assert.doesNotMatch(page, /Remote & on site working available/);
+  assert.doesNotMatch(page, /Fixed and\/or variable pricing structures/);
+  assert.doesNotMatch(page, /Trusted, confidential & professional/);
+  assert.doesNotMatch(aboutBars, /Accounts, Tax|Self-assessment|Payroll, CIS|contractor records/);
+  assert.doesNotMatch(aboutBars, />\s*\d+%\s*</);
+  assert.doesNotMatch(aboutBars, /percentage|percent/i);
+  assert.doesNotMatch(aboutBars, /scaleX/);
+  assert.match(practicalVisual, /Trusted, confidential and professional accountancy support/);
+  assert.match(practicalVisual, /src="\/assets\/brand\/accwise-logo\.svg"/);
 });
 
 test("mobile menu keeps services inside the Services dropdown and hides FAQ navigation", () => {

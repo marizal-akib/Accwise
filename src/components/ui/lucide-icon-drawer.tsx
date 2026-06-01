@@ -17,9 +17,24 @@ export function useLucideDrawerAnimation() {
       return;
     }
 
-    const svgElements = rootElement.querySelectorAll(
-      "svg path, svg circle, svg polyline, svg line, svg rect",
+    const svgElements = rootElement.querySelectorAll<SVGGeometryElement>(
+      [
+        "[data-accwise-icon-motion] path",
+        "[data-accwise-icon-motion] circle",
+        "[data-accwise-icon-motion] polyline",
+        "[data-accwise-icon-motion] line",
+        "[data-accwise-icon-motion] rect",
+        "path[data-accwise-icon-motion]",
+        "circle[data-accwise-icon-motion]",
+        "polyline[data-accwise-icon-motion]",
+        "line[data-accwise-icon-motion]",
+        "rect[data-accwise-icon-motion]",
+      ].join(", "),
     );
+
+    if (svgElements.length === 0) {
+      return;
+    }
 
     svgElements.forEach((element) => element.classList.add("line"));
 
