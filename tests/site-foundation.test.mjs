@@ -305,7 +305,10 @@ test("homepage shared chrome avoids hard section separator borders", () => {
   assert.doesNotMatch(homePage, /border border-accwise-border/);
   assert.doesNotMatch(faqFeature, /border border-accwise-border/);
   assert.match(faqFeature, /border-b-0 px-5/);
-  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.22, once: true \}\)/);
+  assert.match(faqFeature, /faqVisualInViewOptions/);
+  assert.match(faqFeature, /amount: 0\.52/);
+  assert.match(faqFeature, /margin: "0px 0px -18% 0px"/);
+  assert.match(faqFeature, /useInView\(visualRef, faqVisualInViewOptions\)/);
   assert.doesNotMatch(faqFeature, /blur\(/);
   assert.doesNotMatch(faqFeature, /blur-sm/);
   assert.match(faqFeature, /AccwiseMetalMark/);
@@ -383,7 +386,10 @@ test("FAQ callback visual uses a live metallic SVG mark", () => {
   assert.match(faqFeature, /duration: 1\.25/);
   assert.match(faqFeature, /transform-gpu/);
   assert.match(faqFeature, /will-change-transform/);
-  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.22, once: true \}\)/);
+  assert.match(faqFeature, /amount: 0\.52/);
+  assert.match(faqFeature, /margin: "0px 0px -18% 0px"/);
+  assert.match(faqFeature, /useInView\(visualRef, faqVisualInViewOptions\)/);
+  assert.doesNotMatch(faqFeature, /amount: 0\.22/);
   assert.doesNotMatch(faqFeature, /y: \[280, 190, 105, 42, 0\]/);
   assert.doesNotMatch(faqFeature, /duration: 2\.6/);
   assert.doesNotMatch(faqFeature, /times: \[0, 0\.25, 0\.55, 0\.82, 1\]/);

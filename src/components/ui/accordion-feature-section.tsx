@@ -69,11 +69,17 @@ const glowRevealVariants: Variants = {
   },
 };
 
+const faqVisualInViewOptions = {
+  amount: 0.52,
+  margin: "0px 0px -18% 0px",
+  once: true,
+} as const;
+
 const Feature197 = ({
   features = defaultFeatures,
 }: Feature197Props) => {
   const visualRef = useRef<HTMLDivElement | null>(null);
-  const isVisualInView = useInView(visualRef, { amount: 0.22, once: true });
+  const isVisualInView = useInView(visualRef, faqVisualInViewOptions);
   const shouldReduceMotion = useReducedMotion();
   const showVisual = Boolean(shouldReduceMotion || isVisualInView);
   const firstFeatureValue = features[0] ? `item-${features[0].id}` : undefined;
