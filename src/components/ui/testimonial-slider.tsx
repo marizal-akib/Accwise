@@ -164,7 +164,7 @@ export default function TestimonialSlider({
   return (
     <section
       className={cn("overflow-hidden bg-[#eef5f0] text-accwise-navy", className)}
-      data-testid="mock-testimonial-slider"
+      data-testid="client-situation-slider"
     >
       <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 lg:px-8">
         <motion.div
@@ -187,7 +187,7 @@ export default function TestimonialSlider({
           </div>
           <div className="flex items-center gap-3">
             <button
-              aria-label="Previous sample testimonial"
+              aria-label="Previous client situation"
               className={cn(
                 "inline-flex size-12 items-center justify-center rounded-full bg-white text-accwise-navy shadow-[0_12px_32px_rgba(22,37,66,0.12)] transition",
                 canGoPrev
@@ -201,7 +201,7 @@ export default function TestimonialSlider({
               <ChevronLeft aria-hidden="true" className="size-5" />
             </button>
             <button
-              aria-label="Next sample testimonial"
+              aria-label="Next client situation"
               className={cn(
                 "inline-flex size-12 items-center justify-center rounded-full bg-accwise-navy text-white shadow-[0_12px_32px_rgba(22,37,66,0.18)] transition",
                 canGoNext
@@ -247,7 +247,7 @@ export default function TestimonialSlider({
                     />
                     <div className="relative">
                       <span className="inline-flex rounded-full bg-accwise-green/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accwise-green">
-                        SAMPLE TESTIMONIAL
+                        CLIENT SITUATION
                       </span>
                       <p className="mt-6 text-lg font-semibold leading-8 text-accwise-navy">
                         &ldquo;{testimonial.quote}&rdquo;
@@ -277,7 +277,7 @@ export default function TestimonialSlider({
           <div className="mt-8 flex justify-center gap-2">
             {dots.map((index) => (
               <button
-                aria-label={`Go to sample testimonial ${index + 1}`}
+                aria-label={`Go to client situation ${index + 1}`}
                 className={cn(
                   "h-2.5 rounded-full transition-all",
                   index === activeIndex

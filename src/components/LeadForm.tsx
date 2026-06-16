@@ -53,7 +53,7 @@ export function LeadForm({
       "Main concern:",
       mainConcern,
       "",
-      "Note: This temporary website form opens a prefilled email and does not store enquiry details.",
+      "Note: This website form opens a prefilled email and does not store enquiry details.",
     ].join("\n");
 
     const mailto = `mailto:info@accwise.co.uk?subject=${encodeURIComponent(
@@ -123,8 +123,8 @@ export function LeadForm({
         }
       >
         <p className="text-sm leading-6 text-accwise-charcoal/70">
-          These details are used to respond to the enquiry. Final privacy
-          wording is pending client approval.
+          These details are used to respond to the enquiry. No third-party CRM,
+          payment provider or marketing platform is connected through this form.
         </p>
         <LiquidButton className="w-full sm:w-fit" showArrow type="submit">
           {submitLabel}

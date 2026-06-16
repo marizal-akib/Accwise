@@ -1,7 +1,11 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
-import Image from "next/image";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
 import { useRef, useState } from "react";
 
 import {
@@ -10,12 +14,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { AccwiseMetalMark } from "@/components/ui/accwise-metal-mark";
 import { cn } from "@/lib/utils";
 
 interface FeatureItem {
   id: number;
   title: string;
-  image: string;
   description: string;
 }
 
@@ -27,24 +31,49 @@ const defaultFeatures: FeatureItem[] = [
   {
     id: 1,
     title: "How does the callback work?",
-    image: "/assets/brand/accwise-logo-mark.png",
     description:
-      "Send your details and ACCWISE can respond through the provisional phone or email routes listed on this site.",
+      "Send your details and ACCWISE can respond through the phone or email routes listed on this site.",
   },
   {
     id: 2,
     title: "What is the Free Accounting Health Check?",
-    image: "/assets/brand/accwise-logo-mark.png",
     description:
       "It is a first conversation to understand your accountancy, tax, payroll, VAT, CIS, bookkeeping, or HMRC enquiry concern.",
   },
 ];
 
+const visualRevealVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.985, y: 72 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 1.45,
+      ease: [0.5, 1, 0.5, 1],
+    },
+  },
+};
+
+const glowRevealVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.94, y: 36 },
+  visible: {
+    opacity: 0.08,
+    scale: 1,
+    y: 0,
+    transition: {
+      delay: 0.08,
+      duration: 1.25,
+      ease: [0.5, 1, 0.5, 1],
+    },
+  },
+};
+
 const Feature197 = ({
   features = defaultFeatures,
 }: Feature197Props) => {
   const visualRef = useRef<HTMLDivElement | null>(null);
-  const isVisualInView = useInView(visualRef, { amount: 0.42, once: true });
+  const isVisualInView = useInView(visualRef, { amount: 0.22, once: true });
   const shouldReduceMotion = useReducedMotion();
   const showVisual = Boolean(shouldReduceMotion || isVisualInView);
   const firstFeatureValue = features[0] ? `item-${features[0].id}` : undefined;
@@ -102,47 +131,33 @@ const Feature197 = ({
             >
               <motion.div
                 animate={
-                  showVisual
-                    ? {
-                        filter: "blur(0px) brightness(1)",
-                        opacity: 1,
-                        scale: 1,
-                        y: 0,
-                      }
-                    : {
-                        filter: "blur(8px) brightness(1.18)",
-                        opacity: 0,
-                        scale: 0.86,
-                        y: 54,
-                      }
+                  shouldReduceMotion
+                    ? { opacity: 1, scale: 1, y: 0 }
+                    : showVisual
+                      ? "visible"
+                      : "hidden"
                 }
-                className="relative flex aspect-square w-full max-w-[280px] items-center justify-center overflow-visible bg-transparent md:max-w-[360px]"
-                initial={shouldReduceMotion ? false : undefined}
-                transition={{
-                  duration: 0.68,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
+                className="relative flex aspect-square w-full max-w-[340px] transform-gpu items-center justify-center overflow-visible bg-transparent will-change-transform md:max-w-[440px]"
+                initial={shouldReduceMotion ? false : "hidden"}
+                variants={shouldReduceMotion ? undefined : visualRevealVariants}
               >
                 <motion.div
                   aria-hidden="true"
                   animate={
-                    showVisual
-                      ? { opacity: [0, 0.42, 0], scale: [0.62, 1.06, 1.28], y: [34, -8, -18] }
-                      : { opacity: 0, scale: 0.62, y: 34 }
+                    shouldReduceMotion
+                      ? { opacity: 0.08, scale: 1, y: 0 }
+                      : showVisual
+                        ? "visible"
+                        : "hidden"
                   }
-                  className="pointer-events-none absolute bottom-8 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(76,157,225,0.46),rgba(76,157,225,0.18)_48%,transparent_72%)] blur-md"
-                  initial={false}
-                  transition={{
-                    duration: 0.82,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
+                  className="pointer-events-none absolute bottom-8 h-24 w-40 transform-gpu rounded-full bg-[radial-gradient(ellipse,rgba(34,111,177,0.16),rgba(76,157,225,0.08)_46%,transparent_74%)] will-change-transform"
+                  initial={shouldReduceMotion ? false : "hidden"}
+                  variants={shouldReduceMotion ? undefined : glowRevealVariants}
                 />
-                <Image
-                  alt="ACCWISE Accountants logo mark"
-                  className="relative h-auto w-[78%] object-contain drop-shadow-[0_24px_48px_rgba(76,157,225,0.14)]"
-                  height={720}
-                  src="/assets/brand/accwise-logo-mark.png"
-                  width={720}
+                <AccwiseMetalMark
+                  className="relative h-auto w-[90%]"
+                  isActive={showVisual}
+                  reduceMotion={Boolean(shouldReduceMotion)}
                 />
               </motion.div>
             </div>

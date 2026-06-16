@@ -71,7 +71,6 @@ test("ACCWISE official PNG brand assets replace provisional draft assets", () =>
 
   [
     "/assets/brand/accwise-logo.png",
-    "/assets/brand/accwise-logo-mark.png",
     "#4c9de1",
     "#3d8aea",
     "#64b73b",
@@ -169,7 +168,7 @@ test("home page includes the Crafto-inspired section sequence", () => {
     "Understanding your accountancy service routes.",
     "WHO WE HELP",
     "Accounting support for the businesses and individuals we work with",
-    "Mock testimonial layout",
+    "Situations ACCWISE can help you discuss",
     "faqFeatureItems",
     "Ready for clearer accounts and tax support?",
   ].forEach((copy) => {
@@ -245,15 +244,15 @@ test("minimal shadcn gallery carousel files and dependencies exist", () => {
   assert.match(homePage, /<TestimonialSlider/);
 });
 
-test("homepage mock testimonial section is visibly provisional and animated", () => {
+test("homepage client situations section is factual and animated", () => {
   const page = read("src/app/page.tsx");
   const slider = read("src/components/ui/testimonial-slider.tsx");
 
   [
-    "mockTestimonials",
-    "Mock testimonial layout",
-    "Sample feedback only",
-    "Replace with approved client reviews before launch.",
+    "clientSituations",
+    "Situations ACCWISE can help you discuss",
+    "Common enquiry routes",
+    "These examples show common reasons visitors contact ACCWISE",
   ].forEach((copy) => {
     assert.match(page, new RegExp(copy.replaceAll("?", "\\?")));
   });
@@ -265,12 +264,18 @@ test("homepage mock testimonial section is visibly provisional and animated", ()
     "ChevronRight",
     "Quote",
     "prefers-reduced-motion",
-    "SAMPLE TESTIMONIAL",
+    "CLIENT SITUATION",
+    "client-situation-slider",
   ].forEach((copy) => {
     assert.match(slider, new RegExp(copy.replaceAll("-", "\\-")));
   });
 
   [
+    "mockTestimonials",
+    "Mock testimonial layout",
+    "Sample feedback only",
+    "Replace with approved client reviews before launch.",
+    "SAMPLE TESTIMONIAL",
     "Safe proof pattern",
     "Service routes without fake case studies",
     "Route {index + 1}",
@@ -300,10 +305,113 @@ test("homepage shared chrome avoids hard section separator borders", () => {
   assert.doesNotMatch(homePage, /border border-accwise-border/);
   assert.doesNotMatch(faqFeature, /border border-accwise-border/);
   assert.match(faqFeature, /border-b-0 px-5/);
-  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.42, once: true \}\)/);
-  assert.match(faqFeature, /blur\(8px\) brightness\(1\.18\)/);
-  assert.match(faqFeature, /ACCWISE Accountants logo mark/);
-  assert.match(faqFeature, /accwise-logo-mark\.png/);
+  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.22, once: true \}\)/);
+  assert.doesNotMatch(faqFeature, /blur\(/);
+  assert.doesNotMatch(faqFeature, /blur-sm/);
+  assert.match(faqFeature, /AccwiseMetalMark/);
+});
+
+test("brand polish uses darker hero overlays and removes public draft wording", () => {
+  const homePage = read("src/app/page.tsx");
+  const pageHero = read("src/components/PageHero.tsx");
+  const contactPage = read("src/app/contact/page.tsx");
+  const header = read("src/components/SiteHeader.tsx");
+  const iconGrid = read("src/components/ui/icon-set.tsx");
+  const publicSource = readTextTree("src");
+
+  [
+    "rgba(22,37,66,0.94)",
+    "rgba(22,37,66,0.78)",
+    "rgba(22,37,66,0.62)",
+    "rgba(76,157,225,0.14)",
+    "rgba(100,183,59,0.12)",
+  ].forEach((brandValue) => {
+    assert.match(`${homePage}\n${pageHero}\n${contactPage}`, new RegExp(escapeRegExp(brandValue)));
+  });
+
+  [
+    "rgba(76,157,225,0.42)",
+    "rgba(76,157,225,0.36)",
+    "rgba(22,37,66,0.25)",
+    "rgba(100,183,59,0.28)",
+    "rgba(100,183,59,0.26)",
+    "rgba(100,183,59,0.22)",
+  ].forEach((oldValue) => {
+    assert.doesNotMatch(`${homePage}\n${pageHero}\n${contactPage}`, new RegExp(escapeRegExp(oldValue)));
+  });
+
+  assert.match(header, /bg-white\/88/);
+  assert.match(header, /h-16 w-auto sm:h-20 lg:h-\[5\.5rem\]/);
+  assert.match(iconGrid, /hover:bg-accwise-blue/);
+  assert.doesNotMatch(iconGrid, /#1558c8/);
+
+  [
+    "Sample feedback only",
+    "Mock testimonial layout",
+    "SAMPLE TESTIMONIAL",
+    "provisional contact",
+    "pending client approval",
+    "launch wording",
+    "production launch",
+  ].forEach((draftPhrase) => {
+    assert.doesNotMatch(publicSource, new RegExp(escapeRegExp(draftPhrase), "i"));
+  });
+});
+
+test("FAQ callback visual uses a live metallic SVG mark", () => {
+  const page = read("src/app/page.tsx");
+  const faqFeature = read("src/components/ui/accordion-feature-section.tsx");
+  const metalMark = read("src/components/ui/accwise-metal-mark.tsx");
+
+  assert.match(faqFeature, /import \{ AccwiseMetalMark \}/);
+  assert.match(faqFeature, /<AccwiseMetalMark/);
+  assert.match(faqFeature, /max-w-\[340px\]/);
+  assert.match(faqFeature, /md:max-w-\[440px\]/);
+  assert.match(faqFeature, /w-\[90%\]/);
+  assert.match(faqFeature, /visualRevealVariants: Variants/);
+  assert.match(faqFeature, /glowRevealVariants: Variants/);
+  assert.match(faqFeature, /opacity: 1/);
+  assert.match(faqFeature, /scale: 1/);
+  assert.match(faqFeature, /scale: 0\.985/);
+  assert.match(faqFeature, /y: 72/);
+  assert.match(faqFeature, /duration: 1\.45/);
+  assert.match(faqFeature, /ease: \[0\.5, 1, 0\.5, 1\]/);
+  assert.match(faqFeature, /opacity: 0\.08/);
+  assert.match(faqFeature, /scale: 0\.94/);
+  assert.match(faqFeature, /y: 36/);
+  assert.match(faqFeature, /delay: 0\.08/);
+  assert.match(faqFeature, /duration: 1\.25/);
+  assert.match(faqFeature, /transform-gpu/);
+  assert.match(faqFeature, /will-change-transform/);
+  assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.22, once: true \}\)/);
+  assert.doesNotMatch(faqFeature, /y: \[280, 190, 105, 42, 0\]/);
+  assert.doesNotMatch(faqFeature, /duration: 2\.6/);
+  assert.doesNotMatch(faqFeature, /times: \[0, 0\.25, 0\.55, 0\.82, 1\]/);
+  assert.doesNotMatch(faqFeature, /blur-sm/);
+  assert.match(faqFeature, /useReducedMotion/);
+  assert.doesNotMatch(faqFeature, /next\/image/);
+  assert.doesNotMatch(faqFeature, /accwise-logo-mark\.png/);
+  assert.doesNotMatch(page, /image: "\/assets\/brand\/accwise-logo-mark\.png"/);
+
+  assert.match(metalMark, /role="img"/);
+  assert.match(metalMark, /aria-label="ACCWISE Accountants logo mark"/);
+  assert.match(metalMark, /officialMarkSrc = "\/assets\/brand\/accwise-logo-mark\.png"/);
+  assert.match(metalMark, /accwise-metal-ring/);
+  assert.match(metalMark, /accwise-metal-aw/);
+  assert.match(metalMark, /accwise-metal-light-sweep/);
+  assert.match(metalMark, /perspective: "900px"/);
+  assert.match(metalMark, /transform-gpu will-change-transform/);
+  assert.match(metalMark, /rotateX: shouldAnimateMetal \? \[0, 6, 0, -6, 0\] : 0/);
+  assert.match(metalMark, /rotateY: shouldAnimateMetal \? \[0, -14, 0, 14, 0\] : 0/);
+  assert.doesNotMatch(metalMark, /<motion\.svg/);
+  assert.doesNotMatch(metalMark, /<motion\.g/);
+  assert.doesNotMatch(metalMark, /<motion\.rect/);
+  assert.doesNotMatch(metalMark, /scaleX: shouldAnimateMetal/);
+  assert.doesNotMatch(metalMark, /scaleY: shouldAnimateMetal/);
+  assert.doesNotMatch(metalMark, /x: shouldAnimateMetal \? \[0, -1\.5/);
+  assert.doesNotMatch(metalMark, /y: shouldAnimateMetal \? \[0, 1\.5/);
+  assert.match(metalMark, /duration: 6\.8/);
+  assert.match(metalMark, /duration: 3\.6/);
 });
 
 test("homepage polish uses adapted ACCWISE badge, centered service cards, and white footer", () => {
@@ -425,7 +533,8 @@ test("homepage replaces the template audience grid with the ACCWISE who we help 
   assert.match(page, /<IconGrid className="mt-14" items={whoWeHelpItems} \/>/);
   assert.match(iconGrid, /from "framer-motion"/);
   assert.match(iconGrid, /grid-cols-2 md:grid-cols-4/);
-  assert.match(iconGrid, /hover:bg-\[#1558c8\]/);
+  assert.match(iconGrid, /hover:bg-accwise-blue/);
+  assert.doesNotMatch(iconGrid, /#1558c8/);
   assert.match(iconGrid, /staggerChildren: 0\.08/);
   assert.match(iconGrid, /whileInView=\{shouldReduceMotion \? undefined : "visible"\}/);
   assert.match(iconGrid, /viewport=\{\{ once: true, amount: 0\.25 \}\}/);
@@ -501,7 +610,7 @@ test("minimal contact form avoids hard separator underlines", () => {
   assert.doesNotMatch(leadForm, /resize-y/);
   assert.doesNotMatch(header, /shadow-sm/);
 });
-test("temporary lead forms use mailto and do not create a backend", () => {
+test("lead forms use mailto and do not create a backend", () => {
   const contactForm = read("src/components/LeadForm.tsx");
 
   assert.match(contactForm, /mailto:info@accwise\.co\.uk/);
@@ -517,7 +626,8 @@ test("contact page follows the Crafto-inspired safe contact structure", () => {
   [
     "Contact ACCWISE",
     "Speak to ACCWISE about your accounts, tax, payroll or VAT.",
-    "No office address, map location, professional membership, or",
+    "Focused contact routes",
+    "without adding unverified address, map,",
     "Looking for accountancy help?",
     "variant=\"minimal\"",
     "id=\"callback-form\"",
@@ -581,7 +691,7 @@ test("about page follows the Crafto-inspired image, process, and safety structur
   assert.match(aboutPage, /approachImage/);
   assert.match(aboutPage, /processCards/);
   assert.match(aboutPage, /How ACCWISE keeps the first conversation practical/);
-  assert.match(aboutPage, /Confirmation needed before launch/);
+  assert.match(aboutPage, /Clear service boundaries/);
   assert.doesNotMatch(aboutPage, /PageHero\\s*\\n\\s*description/);
 });
 

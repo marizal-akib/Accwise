@@ -105,17 +105,17 @@ export default function AboutPage() {
               Practical accountancy support for growing businesses.
             </h2>
             <p className="mt-5 text-lg leading-8 text-accwise-charcoal/78">
-              The first website version is built around enquiry routes for SMEs,
-              self-employed clients, sole traders, companies, partnerships,
-              charities, payroll teams, VAT/CIS clients and individuals needing
-              accounting or tax support.
+              ACCWISE is built around enquiry routes for SMEs, self-employed
+              clients, sole traders, companies, partnerships, charities, payroll
+              teams, VAT/CIS clients and individuals needing accounting or tax
+              support.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
                 ["Clarity", "Make accounting and tax conversations easier to understand."],
                 ["Responsiveness", "Give visitors a direct route to request a callback."],
                 ["Practical guidance", "Focus on useful next steps rather than generic claims."],
-                ["Safe wording", "Keep launch claims provisional until ACCWISE confirms them."],
+                ["Factual scope", "Keep the page focused on services, enquiry routes and verifiable details."],
               ].map(([title, copy]) => (
                 <article
                   className="rounded-lg bg-white p-5 shadow-[0_16px_42px_rgba(22,37,66,0.07)]"
@@ -144,8 +144,9 @@ export default function AboutPage() {
               How ACCWISE keeps the first conversation practical
             </h2>
             <p className="mt-5 text-lg leading-8 text-white/68">
-              The page keeps the Crafto-style process rhythm, adapted for a
-              first accountancy conversation instead of an IT project workflow.
+              Each conversation starts with the practical accountancy need,
+              then moves toward the records, deadlines and next step that matter
+              most.
             </p>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
@@ -199,11 +200,12 @@ export default function AboutPage() {
               <Shield aria-hidden="true" className="size-6" />
             </div>
             <h3 className="mt-6 text-2xl font-bold text-accwise-navy">
-              Confirmation needed before launch
+              Clear service boundaries
             </h3>
             <p className="mt-4 leading-7 text-accwise-charcoal/72">
-              These details should be checked with ACCWISE before any public
-              launch wording is treated as final.
+              The site stays focused on verified service routes and direct
+              enquiry actions. Additional office, regulatory or credential
+              details can be added when ACCWISE chooses to publish them.
             </p>
             <ul className="mt-6 grid gap-3 text-sm leading-6 text-accwise-charcoal/75">
               <li className="flex gap-3">

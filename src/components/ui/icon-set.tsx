@@ -117,7 +117,7 @@ function IconGridCell({
       className={cn(
         "group relative flex min-h-48 flex-col items-center justify-center gap-6",
         "border-white/12 px-5 py-10 text-center outline-none transition duration-300 ease-out",
-        "hover:bg-[#1558c8] focus-visible:bg-[#1558c8] focus-visible:ring-2 focus-visible:ring-white/80",
+        "hover:bg-accwise-blue focus-visible:bg-accwise-blue focus-visible:ring-2 focus-visible:ring-white/80",
         "motion-reduce:transition-none sm:min-h-56 lg:min-h-64",
         index % 2 === 0 ? "border-r" : "",
         index < itemCount - 2 ? "border-b" : "",

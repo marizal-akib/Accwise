@@ -153,7 +153,7 @@ export const faqItems = [
   {
     question: "How does the callback work?",
     answer:
-      "Send your details and ACCWISE can respond through the provisional phone or email routes listed on this site.",
+      "Send your details and ACCWISE can respond through the phone or email routes listed on this site.",
   },
   {
     question: "What is the Free Accounting Health Check?",
@@ -163,7 +163,7 @@ export const faqItems = [
   {
     question: "Can ACCWISE help with self-assessment tax returns?",
     answer:
-      "Self-Assessment Tax Return is listed on the business card as a service area. Final launch wording still needs client approval.",
+      "ACCWISE can discuss self-assessment tax return support, including records, deadlines, and the next step for filing.",
   },
   {
     question: "Can ACCWISE support payroll management?",
@@ -173,7 +173,7 @@ export const faqItems = [
   {
     question: "Can ACCWISE help with corporation tax, VAT, and CIS?",
     answer:
-      "Corporation Tax, VAT, and CIS are listed on the business card and should be presented as practical enquiry routes until the exact scope is confirmed.",
+      "Corporation Tax, VAT, and CIS are listed service areas, and the callback route helps identify the practical support needed.",
   },
   {
     question: "Can ACCWISE help with bookkeeping and accounts?",

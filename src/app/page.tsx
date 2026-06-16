@@ -33,53 +33,52 @@ const serviceGalleryItems: GalleryItem[] = serviceAreas.map((service, index) => 
   image: serviceImages[index % serviceImages.length],
 }));
 
-const mockTestimonials: Testimonial[] = [
+const clientSituations: Testimonial[] = [
   {
-    context: "Self-assessment placeholder",
+    context: "Self-assessment route",
     id: 1,
-    name: "Sample sole trader",
+    name: "Sole trader enquiry",
     quote:
-      "Sample feedback copy for a future client review about clearer tax-return next steps.",
-    status: "Sample feedback only",
+      "A practical route for discussing tax-return deadlines, records, allowable costs, and the next step for filing.",
+    status: "Common enquiry route",
   },
   {
-    context: "Limited company placeholder",
+    context: "Limited company route",
     id: 2,
-    name: "Sample company director",
+    name: "Company director enquiry",
     quote:
-      "Sample wording for a future review about organised company accounts and practical communication.",
-    status: "Sample feedback only",
+      "Support for company accounts, corporation tax, confirmation statements, and clear records for directors.",
+    status: "Common enquiry route",
   },
   {
-    context: "Payroll placeholder",
+    context: "Payroll route",
     id: 3,
-    name: "Sample employer",
+    name: "Employer enquiry",
     quote:
-      "Sample testimonial copy showing how payroll support feedback could appear once approved.",
-    status: "Sample feedback only",
+      "A route for discussing payroll management, employee records, payslips, and HMRC payroll obligations.",
+    status: "Common enquiry route",
   },
   {
-    context: "VAT placeholder",
+    context: "VAT route",
     id: 4,
-    name: "Sample VAT client",
+    name: "VAT business enquiry",
     quote:
-      "Sample review text for a future VAT enquiry route, pending real client wording.",
-    status: "Sample feedback only",
+      "Help for VAT registration questions, returns, Making Tax Digital, and keeping VAT records organised.",
+    status: "Common enquiry route",
   },
   {
-    context: "Business advisory placeholder",
+    context: "Business advisory route",
     id: 5,
-    name: "Sample business owner",
+    name: "Business owner enquiry",
     quote:
-      "Sample feedback layout for advisory conversations, ready to replace with verified ACCWISE reviews.",
-    status: "Sample feedback only",
+      "A practical conversation for understanding business support needs before wider advisory work is agreed.",
+    status: "Common enquiry route",
   },
 ];
 
 const faqFeatureItems = faqItems.slice(0, 5).map((item, index) => ({
   description: item.answer,
   id: index + 1,
-  image: "/assets/brand/accwise-logo-mark.png",
   title: item.question,
 }));
 
@@ -132,10 +131,10 @@ export default function Home() {
       <section
         className="relative min-h-screen overflow-hidden bg-accwise-navy bg-cover bg-center text-white"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88) 0%, rgba(76,157,225,0.42) 45%, rgba(22,37,66,0.25) 100%), url(${heroImage})`,
+          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.94) 0%, rgba(22,37,66,0.78) 48%, rgba(22,37,66,0.62) 100%), linear-gradient(135deg, rgba(76,157,225,0.14) 0%, rgba(100,183,59,0.08) 70%), url(${heroImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(100,183,59,0.28),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(100,183,59,0.12),transparent_28%)]" />
         <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-5 pb-28 pt-32 sm:px-6 lg:px-8 lg:pt-28">
           <div className="max-w-3xl">
             <p className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur">
@@ -180,8 +179,9 @@ export default function Home() {
               ACCWISE supports self-employed clients, companies, sole traders,
               partnerships, charities and individuals with accountancy, tax,
               payroll, VAT, CIS, bookkeeping, company filing and advisory
-              conversations. Official details remain pending client confirmation
-              before launch.
+              conversations. The site focuses on practical enquiry routes and
+              clear next steps without adding unconfirmed review claims,
+              memberships, awards or guarantees.
             </p>
             <AboutSupportBars />
           </div>
@@ -218,10 +218,10 @@ export default function Home() {
       </section>
 
       <TestimonialSlider
-        description="Replace with approved client reviews before launch."
-        eyebrow="Sample feedback only"
-        heading="Mock testimonial layout"
-        testimonials={mockTestimonials}
+        description="These examples show common reasons visitors contact ACCWISE, without presenting unverified reviews or case-study claims."
+        eyebrow="Common enquiry routes"
+        heading="Situations ACCWISE can help you discuss"
+        testimonials={clientSituations}
       />
 
       <Feature197 features={faqFeatureItems} />

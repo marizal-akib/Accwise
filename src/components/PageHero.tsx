@@ -24,10 +24,10 @@ export function PageHero({
       <section
         className="relative flex min-h-[570px] items-center overflow-hidden bg-accwise-navy bg-cover bg-center px-5 pb-28 pt-32 text-white sm:min-h-[620px] sm:px-6 lg:px-8"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.92), rgba(76,157,225,0.42), rgba(22,37,66,0.5)), url(${image})`,
+          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.94), rgba(22,37,66,0.78), rgba(22,37,66,0.62)), linear-gradient(135deg, rgba(76,157,225,0.12), rgba(100,183,59,0.08)), url(${image})`,
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(100,183,59,0.26),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(100,183,59,0.12),transparent_28%)]" />
         <div className="relative mx-auto w-full max-w-6xl">
           {eyebrow ? (
             <p className="inline-flex rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/76 backdrop-blur">

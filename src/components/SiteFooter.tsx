@@ -76,8 +76,8 @@ export function SiteFooter() {
               <span>{contactDetails.domain}</span>
             </div>
             <p className="mt-5 text-xs leading-6 text-accwise-charcoal/52">
-              Contact details and legal footer wording are pending final client
-              confirmation.
+              Contact ACCWISE directly for current service, appointment and
+              availability details.
             </p>
           </div>
         </div>

@@ -14,7 +14,7 @@ import { contactDetails } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact ACCWISE Accountants or request a callback using the temporary email enquiry flow.",
+    "Contact ACCWISE Accountants or request a callback using the email enquiry flow.",
 };
 
 const contactHeroImage =
@@ -29,7 +29,7 @@ const contactRoutes = [
     label: contactDetails.landline,
     href: `tel:${contactDetails.landline.replaceAll(" ", "")}`,
     icon: PhoneCall,
-    note: "Provisional landline from the current ACCWISE source material.",
+    note: "Call ACCWISE directly to discuss accounts, tax, payroll, VAT, CIS, or business support.",
   },
   {
     title: "Mobile callback",
@@ -43,7 +43,7 @@ const contactRoutes = [
     label: contactDetails.email,
     href: `mailto:${contactDetails.email}`,
     icon: Mail,
-    note: "Send enquiry details directly while the final form backend is pending.",
+    note: "Send enquiry details directly with your main concern and preferred response route.",
   },
   {
     title: "Website",
@@ -60,10 +60,10 @@ export default function ContactPage() {
       <section
         className="relative flex min-h-[590px] items-center justify-center overflow-hidden bg-accwise-navy bg-cover bg-center px-5 pb-28 pt-32 text-center text-white sm:min-h-[640px] sm:px-6 lg:px-8"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88), rgba(76,157,225,0.36), rgba(22,37,66,0.72)), url(${contactHeroImage})`,
+          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.92), rgba(22,37,66,0.74), rgba(22,37,66,0.66)), linear-gradient(135deg, rgba(76,157,225,0.12), rgba(100,183,59,0.08)), url(${contactHeroImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(100,183,59,0.22),transparent_30%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(100,183,59,0.1),transparent_30%)]" />
         <div className="relative mx-auto max-w-4xl">
           <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/78 backdrop-blur">
             <Mail className="size-4" aria-hidden="true" />
@@ -73,8 +73,8 @@ export default function ContactPage() {
             Contact ACCWISE
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/76 sm:text-xl sm:leading-9">
-            Request a callback or use the provisional contact details while the
-            final ACCWISE enquiry route is confirmed.
+            Request a callback or contact ACCWISE directly about accountancy,
+            tax, payroll, VAT, CIS, bookkeeping or company support.
           </p>
         </div>
         <AnimatedWaveDivider variant="white" />
@@ -91,8 +91,8 @@ export default function ContactPage() {
             </h2>
             <p className="mt-5 text-lg leading-8 text-accwise-charcoal/72">
               Share your main concern and the best way to respond. The contact
-              details below are shown as provisional until the client confirms
-              launch wording.
+              routes below help ACCWISE understand the enquiry and reply
+              through the most suitable channel.
             </p>
             <LiquidButtonLink className="mt-8" href="#callback-form" showArrow>
               Request a callback
@@ -113,11 +113,12 @@ export default function ContactPage() {
                   Contact details
                 </p>
                 <h3 className="mt-3 text-2xl font-bold text-accwise-navy">
-                  Pending confirmation
+                  Focused contact routes
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-accwise-charcoal/68">
-                  No office address, map location, professional membership, or
-                  review claim is shown until ACCWISE confirms it for launch.
+                  The page keeps enquiries focused on phone, email, website and
+                  callback routes without adding unverified address, map,
+                  membership or review claims.
                 </p>
               </div>
             </article>
@@ -201,8 +202,8 @@ export default function ContactPage() {
               Looking for accountancy help?
             </h2>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-accwise-charcoal/70">
-              Use the temporary callback form for your details and main concern.
-              Nothing is stored or sent to a third-party service.
+              Use the callback form for your details and main concern. Nothing
+              is stored or sent to a third-party service.
             </p>
             <div className="mt-10">
               <LeadForm

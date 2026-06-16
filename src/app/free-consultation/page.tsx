@@ -4,7 +4,7 @@ import { LeadForm } from "@/components/LeadForm";
 export const metadata: Metadata = {
   title: "Free Accounting Health Check",
   description:
-    "Start a free accounting health check enquiry with ACCWISE Accountants through the temporary email form.",
+    "Start a free accounting health check enquiry with ACCWISE Accountants through the email form.",
 };
 
 export default function FreeConsultationPage() {
@@ -24,8 +24,9 @@ export default function FreeConsultationPage() {
             discuss.
           </p>
           <p className="mt-5 text-sm leading-6 text-accwise-charcoal/65">
-            Details are used to respond to the enquiry. Final privacy wording is
-            pending client approval before production launch.
+            Details are used to respond to the enquiry. No third-party CRM,
+            payment provider or marketing platform is connected through this
+            form.
           </p>
         </div>
         <LeadForm

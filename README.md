@@ -19,7 +19,7 @@ Next.js website build for ACCWISE Accountants.
 
 - `/` - homepage
 - `/services` - service routes and anchors
-- `/about` - firm approach and provisional launch-safety copy
+- `/about` - firm approach and practical service boundaries
 - `/contact` - callback enquiry form
 - `/faqs` - FAQ accordion
 - `/free-consultation` - QR landing page for the Free Accounting Health Check
@@ -41,11 +41,10 @@ npm run lint
 npm run build
 ```
 
-## Content Safety Notes
+## Content Quality Notes
 
-- ACCWISE business-card details are used as provisional source material.
 - Do not add unconfirmed qualifications, regulatory memberships, awards, addresses, review counts, guarantees, or real testimonials unless approved by the client.
-- Homepage testimonials are currently mock/sample placeholders and are visibly labelled for replacement before launch.
+- Homepage client-situation cards describe common enquiry routes only; they are not testimonials or case studies.
 - Crafto was used only as a structure and rhythm reference; do not copy Crafto assets, code, copy, testimonials, or exact identity.
 
 ## Assets
