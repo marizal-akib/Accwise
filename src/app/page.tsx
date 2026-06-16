@@ -129,26 +129,26 @@ export default function Home() {
   return (
     <>
       <section
-        className="relative min-h-screen overflow-hidden bg-accwise-navy bg-cover bg-center text-white"
+        className="relative min-h-[100svh] overflow-hidden bg-accwise-navy bg-cover bg-center text-white sm:min-h-screen"
         style={{
           backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.94) 0%, rgba(22,37,66,0.78) 48%, rgba(22,37,66,0.62) 100%), linear-gradient(135deg, rgba(76,157,225,0.14) 0%, rgba(100,183,59,0.08) 70%), url(${heroImage})`,
         }}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(100,183,59,0.12),transparent_28%)]" />
-        <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-5 pb-28 pt-32 sm:px-6 lg:px-8 lg:pt-28">
+        <div className="relative mx-auto flex min-h-[100svh] w-full max-w-6xl items-center px-5 pb-20 pt-24 sm:min-h-screen sm:px-6 sm:pb-28 sm:pt-32 lg:px-8 lg:pt-28">
           <div className="max-w-3xl">
-            <p className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur">
+            <p className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[0.68rem] font-semibold uppercase leading-4 tracking-[0.14em] text-white/80 backdrop-blur sm:px-4 sm:py-2 sm:text-xs sm:tracking-[0.2em]">
               ACCOUNTS • TAX • PAYROLL • BUSINESS SUPPORT
             </p>
-            <h1 className="mt-7 max-w-4xl text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-[2.6rem] font-bold leading-[1.02] text-white sm:mt-7 sm:text-6xl sm:leading-[1.03] lg:text-7xl">
               Accounting Built Around Modern Businesses
             </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-9 text-white/78">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-white/78 sm:mt-6 sm:text-xl sm:leading-9">
               Practical accounting, tax, payroll, VAT, CIS and company support
               for sole traders, landlords, limited companies and growing
               businesses.
             </p>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="mt-7 flex flex-col gap-4 sm:mt-9 sm:flex-row sm:items-center">
               <CtaLink
                 className="w-full sm:w-auto"
                 href="/contact"
@@ -157,7 +157,7 @@ export default function Home() {
                 Request a callback
               </CtaLink>
             </div>
-            <p className="mt-5 text-sm font-semibold uppercase tracking-[0.18em] text-white/64">
+            <p className="mt-4 text-[0.72rem] font-semibold uppercase leading-5 tracking-[0.13em] text-white/64 sm:mt-5 sm:text-sm sm:tracking-[0.18em]">
               Accounts • Tax Returns • VAT • Payroll • CIS • MTD
             </p>
           </div>

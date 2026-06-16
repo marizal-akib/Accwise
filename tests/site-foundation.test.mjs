@@ -344,7 +344,11 @@ test("brand polish uses darker hero overlays and removes public draft wording", 
   });
 
   assert.match(header, /bg-white\/88/);
-  assert.match(header, /h-16 w-auto sm:h-20 lg:h-\[5\.5rem\]/);
+  assert.match(header, /min-h-\[4\.5rem\]/);
+  assert.match(header, /sm:min-h-24/);
+  assert.match(header, /h-14 w-auto sm:h-20 lg:h-\[5\.5rem\]/);
+  assert.match(header, /top-\[4\.5rem\]/);
+  assert.match(header, /min-h-\[calc\(100vh-4\.5rem\)\]/);
   assert.match(iconGrid, /hover:bg-accwise-blue/);
   assert.doesNotMatch(iconGrid, /#1558c8/);
 
@@ -359,6 +363,30 @@ test("brand polish uses darker hero overlays and removes public draft wording", 
   ].forEach((draftPhrase) => {
     assert.doesNotMatch(publicSource, new RegExp(escapeRegExp(draftPhrase), "i"));
   });
+});
+
+test("mobile homepage hero keeps content but uses compact mobile rhythm", () => {
+  const homePage = read("src/app/page.tsx");
+
+  assert.match(homePage, /min-h-\[100svh\]/);
+  assert.match(homePage, /sm:min-h-screen/);
+  assert.match(homePage, /pb-20 pt-24/);
+  assert.match(homePage, /sm:pb-28 sm:pt-32/);
+  assert.match(homePage, /px-3 py-1\.5/);
+  assert.match(homePage, /text-\[0\.68rem\]/);
+  assert.match(homePage, /tracking-\[0\.14em\]/);
+  assert.match(homePage, /sm:px-4 sm:py-2 sm:text-xs/);
+  assert.match(homePage, /text-\[2\.6rem\]/);
+  assert.match(homePage, /sm:text-6xl/);
+  assert.match(homePage, /lg:text-7xl/);
+  assert.match(homePage, /text-base leading-7/);
+  assert.match(homePage, /sm:text-xl sm:leading-9/);
+  assert.match(homePage, /text-\[0\.72rem\]/);
+  assert.match(homePage, /tracking-\[0\.13em\]/);
+  assert.match(homePage, /sm:text-sm sm:tracking-\[0\.18em\]/);
+  assert.match(homePage, /Accounts • Tax Returns • VAT • Payroll • CIS • MTD/);
+  assert.doesNotMatch(homePage, /hidden sm:block[^"]*Accounts • Tax Returns/);
+  assert.doesNotMatch(homePage, /sm:hidden[^"]*Accounts • Tax Returns/);
 });
 
 test("FAQ callback visual uses a live metallic SVG mark", () => {

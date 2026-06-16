@@ -156,7 +156,7 @@ export function SiteHeader() {
           : "bg-white/92 text-accwise-navy shadow-none backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:min-h-24 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-[4.5rem] w-full max-w-6xl items-center justify-between gap-4 px-5 sm:min-h-24 sm:px-6 lg:px-8">
         <Link
           aria-label="ACCWISE Accountants home"
           className="shrink-0 transition"
@@ -165,7 +165,7 @@ export function SiteHeader() {
         >
           <Image
             alt="ACCWISE Accountants"
-            className="h-16 w-auto sm:h-20 lg:h-[5.5rem]"
+            className="h-14 w-auto sm:h-20 lg:h-[5.5rem]"
             height={1093}
             priority
             src="/assets/brand/accwise-logo.png"
@@ -230,7 +230,7 @@ export function SiteHeader() {
 
       {open ? (
         <div
-          className="fixed inset-x-0 top-20 z-40 min-h-[calc(100vh-5rem)] bg-accwise-navy px-5 py-8 text-white sm:top-24 sm:min-h-[calc(100vh-6rem)] lg:hidden"
+          className="fixed inset-x-0 top-[4.5rem] z-40 min-h-[calc(100vh-4.5rem)] bg-accwise-navy px-5 py-8 text-white sm:top-24 sm:min-h-[calc(100vh-6rem)] lg:hidden"
           id="mobile-menu"
         >
           <nav aria-label="Mobile navigation" className="mx-auto max-w-6xl">
