@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 
@@ -7,6 +7,33 @@ const root = process.cwd();
 
 function read(relativePath) {
   return readFileSync(path.join(root, relativePath), "utf8");
+}
+
+function readTextTree(relativePath) {
+  const start = path.join(root, relativePath);
+  const chunks = [];
+
+  function walk(filePath) {
+    const stat = statSync(filePath);
+
+    if (stat.isDirectory()) {
+      for (const entry of readdirSync(filePath)) {
+        walk(path.join(filePath, entry));
+      }
+      return;
+    }
+
+    if (/\.(css|mjs|ts|tsx|svg)$/.test(filePath)) {
+      chunks.push(readFileSync(filePath, "utf8"));
+    }
+  }
+
+  walk(start);
+  return chunks.join("\n");
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 test("phase 1 required routes exist", () => {
@@ -22,14 +49,51 @@ test("phase 1 required routes exist", () => {
   });
 });
 
-test("ACCWISE brand assets are copied into public assets", () => {
+test("ACCWISE official PNG brand assets replace provisional draft assets", () => {
   [
-    "public/assets/brand/accwise-logo.svg",
-    "public/assets/brand/accwise-logo-mark.svg",
-    "public/assets/brand/accwise-logo-horizontal.png",
+    "public/assets/brand/accwise-logo.png",
     "public/assets/brand/accwise-logo-mark.png",
   ].forEach((assetPath) => {
     assert.equal(existsSync(path.join(root, assetPath)), true, `${assetPath} is missing`);
+  });
+
+  [
+    "public/assets/brand/accwise-logo.svg",
+    "public/assets/brand/accwise-logo-mark.svg",
+    "public/assets/brand/accwise-logo-hero.svg",
+    "public/assets/brand/accwise-logo-horizontal.png",
+  ].forEach((assetPath) => {
+    assert.equal(existsSync(path.join(root, assetPath)), false, `${assetPath} should be removed`);
+  });
+
+  const source = readTextTree("src");
+  const globals = read("src/app/globals.css");
+
+  [
+    "/assets/brand/accwise-logo.png",
+    "/assets/brand/accwise-logo-mark.png",
+    "#4c9de1",
+    "#3d8aea",
+    "#64b73b",
+    "#5ca535",
+  ].forEach((brandValue) => {
+    assert.match(`${source}\n${globals}`.toLowerCase(), new RegExp(escapeRegExp(brandValue)));
+  });
+
+  [
+    "accwise-logo.svg",
+    "accwise-logo-mark.svg",
+    "accwise-logo-hero.svg",
+    "accwise-logo-horizontal.png",
+    "#214b70",
+    "#2f6f35",
+    "#72b84b",
+    "rgba(33,75,112",
+    "rgba(47,111,53",
+    "draft rebuilt",
+    "pending official",
+  ].forEach((draftValue) => {
+    assert.doesNotMatch(`${source}\n${globals}`.toLowerCase(), new RegExp(escapeRegExp(draftValue)));
   });
 });
 
@@ -239,7 +303,7 @@ test("homepage shared chrome avoids hard section separator borders", () => {
   assert.match(faqFeature, /useInView\(visualRef, \{ amount: 0\.42, once: true \}\)/);
   assert.match(faqFeature, /blur\(8px\) brightness\(1\.18\)/);
   assert.match(faqFeature, /ACCWISE Accountants logo mark/);
-  assert.match(faqFeature, /accwise-logo-mark\.svg/);
+  assert.match(faqFeature, /accwise-logo-mark\.png/);
 });
 
 test("homepage polish uses adapted ACCWISE badge, centered service cards, and white footer", () => {
@@ -267,7 +331,7 @@ test("homepage polish uses adapted ACCWISE badge, centered service cards, and wh
   assert.doesNotMatch(footer, /-mt-24/);
   assert.doesNotMatch(footer, /pt-24/);
   assert.doesNotMatch(footer, /<div className="bg-white text-accwise-charcoal">/);
-  assert.match(footer, /w-64 max-w-full/);
+  assert.match(footer, /w-56 max-w-full/);
   assert.match(globals, /@keyframes accwise-skeleton-shimmer/);
 });
 
@@ -280,8 +344,8 @@ test("homepage about section keeps visual card and uses two animated brand bars"
   assert.match(page, /<PracticalVisual imageUrl=\{aboutImage\} \/>/);
   assert.match(aboutBars, /CLARITY/);
   assert.match(aboutBars, /COMPLIANCE/);
-  assert.match(aboutBars, /#214B70/);
-  assert.match(aboutBars, /#2F6F35/);
+  assert.match(aboutBars, /#4C9DE1/);
+  assert.match(aboutBars, /#64B73B/);
   assert.match(aboutBars, /useInView\(root, \{ amount: 0\.35, once: true \}\)/);
   assert.match(aboutBars, /useReducedMotion/);
   assert.match(aboutBars, /width: isFilled \? bar\.targetWidth : "0%"/);
@@ -292,8 +356,8 @@ test("homepage about section keeps visual card and uses two animated brand bars"
   assert.match(aboutBars, /bg-transparent/);
   assert.match(aboutBars, /maskImage/);
   assert.match(aboutBars, /transparent 100%/);
-  assert.match(aboutBars, /rgba\(33,75,112,0\)/);
-  assert.match(aboutBars, /rgba\(47,111,53,0\)/);
+  assert.match(aboutBars, /rgba\(76,157,225,0\)/);
+  assert.match(aboutBars, /rgba\(100,183,59,0\)/);
   assert.doesNotMatch(page, /commitments\.map/);
   assert.doesNotMatch(page, /Accounts, Tax & VAT/);
   assert.doesNotMatch(page, /Self-assessment, company accounts, VAT and bookkeeping support\./);
@@ -308,7 +372,7 @@ test("homepage about section keeps visual card and uses two animated brand bars"
   assert.doesNotMatch(aboutBars, /percentage|percent/i);
   assert.doesNotMatch(aboutBars, /scaleX/);
   assert.match(practicalVisual, /Trusted, confidential and professional accountancy support/);
-  assert.match(practicalVisual, /src="\/assets\/brand\/accwise-logo\.svg"/);
+  assert.match(practicalVisual, /src="\/assets\/brand\/accwise-logo\.png"/);
 });
 
 test("mobile menu keeps services inside the Services dropdown and hides FAQ navigation", () => {

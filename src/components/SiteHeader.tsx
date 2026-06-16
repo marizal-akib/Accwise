@@ -156,34 +156,20 @@ export function SiteHeader() {
           : "bg-white/92 text-accwise-navy shadow-none backdrop-blur"
       }`}
     >
-      <div className="mx-auto flex min-h-20 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto flex min-h-24 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
         <Link
           aria-label="ACCWISE Accountants home"
-          className="shrink-0 transition"
+          className="shrink-0 rounded-lg bg-white/94 px-2 py-1 shadow-[0_10px_28px_rgba(22,37,66,0.14)] backdrop-blur transition"
           href="/"
           onClick={closeMenu}
         >
           <Image
             alt="ACCWISE Accountants"
-            className={`h-auto w-44 sm:w-56 lg:w-64 ${
-              isOnHero ? "lg:hidden" : ""
-            }`}
-            height={72}
+            className="h-20 w-auto sm:h-24 lg:h-[5.5rem]"
+            height={1093}
             priority
-            src="/assets/brand/accwise-logo.svg"
-            width={300}
-          />
-          <Image
-            alt="ACCWISE Accountants"
-            className={`hidden h-auto w-44 sm:w-56 lg:w-64 ${
-              isOnHero
-                ? "lg:block drop-shadow-[0_6px_18px_rgba(0,0,0,0.32)]"
-                : ""
-            }`}
-            height={72}
-            priority
-            src="/assets/brand/accwise-logo-hero.svg"
-            width={300}
+            src="/assets/brand/accwise-logo.png"
+            width={1398}
           />
         </Link>
 
@@ -244,7 +230,7 @@ export function SiteHeader() {
 
       {open ? (
         <div
-          className="fixed inset-x-0 top-20 z-40 min-h-[calc(100vh-5rem)] bg-accwise-navy px-5 py-8 text-white lg:hidden"
+          className="fixed inset-x-0 top-24 z-40 min-h-[calc(100vh-6rem)] bg-accwise-navy px-5 py-8 text-white lg:hidden"
           id="mobile-menu"
         >
           <nav aria-label="Mobile navigation" className="mx-auto max-w-6xl">

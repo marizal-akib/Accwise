@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-white/25 bg-[linear-gradient(135deg,rgba(33,75,112,0.96),rgba(47,111,53,0.88))] text-white shadow-[0_14px_34px_rgba(33,75,112,0.26)] hover:brightness-110 focus-visible:outline-accwise-green",
+          "border border-white/25 bg-[linear-gradient(135deg,rgba(76,157,225,0.96),rgba(100,183,59,0.88))] text-white shadow-[0_14px_34px_rgba(76,157,225,0.26)] hover:brightness-110 focus-visible:outline-accwise-green",
         destructive:
           "border border-red-200 bg-red-600 text-white shadow-[0_14px_34px_rgba(185,28,28,0.22)] hover:brightness-110 focus-visible:outline-red-500",
         outline:

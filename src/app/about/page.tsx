@@ -76,9 +76,9 @@ export default function AboutPage() {
               <Image
                 alt="ACCWISE Accountants"
                 className="h-auto w-full"
-                height={120}
-                src="/assets/brand/accwise-logo.svg"
-                width={520}
+                height={1093}
+                src="/assets/brand/accwise-logo.png"
+                width={1398}
               />
               <div className="mt-6 grid gap-3">
                 {commitments.slice(0, 3).map((commitment) => (

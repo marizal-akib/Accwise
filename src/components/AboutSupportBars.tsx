@@ -5,12 +5,12 @@ import { useRef } from "react";
 
 const supportBars = [
   {
-    fill: "linear-gradient(90deg, #214B70 0%, #2b6089 50%, rgba(33,75,112,0.3) 76%, rgba(33,75,112,0) 100%)",
+    fill: "linear-gradient(90deg, #4C9DE1 0%, #3D8AEA 50%, rgba(76,157,225,0.3) 76%, rgba(76,157,225,0) 100%)",
     label: "CLARITY",
     targetWidth: "100%",
   },
   {
-    fill: "linear-gradient(90deg, #2F6F35 0%, #4a8d51 50%, rgba(47,111,53,0.3) 76%, rgba(47,111,53,0) 100%)",
+    fill: "linear-gradient(90deg, #64B73B 0%, #5CA535 50%, rgba(100,183,59,0.3) 76%, rgba(100,183,59,0) 100%)",
     label: "COMPLIANCE",
     targetWidth: "92%",
   },

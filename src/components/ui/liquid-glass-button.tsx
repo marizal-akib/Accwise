@@ -15,7 +15,7 @@ const sizeClasses: Record<LiquidButtonSize, string> = {
 
 const variantClasses: Record<LiquidButtonVariant, string> = {
   primary:
-    "border border-white/25 bg-[linear-gradient(135deg,rgba(33,75,112,0.96),rgba(47,111,53,0.88))] text-white shadow-[0_14px_34px_rgba(33,75,112,0.26)] hover:border-white/80 hover:text-accwise-navy hover:shadow-[0_24px_44px_rgba(255,255,255,0.18)] focus-visible:outline-accwise-green",
+    "border border-white/25 bg-[linear-gradient(135deg,rgba(76,157,225,0.96),rgba(100,183,59,0.88))] text-white shadow-[0_14px_34px_rgba(76,157,225,0.26)] hover:border-white/80 hover:text-accwise-navy hover:shadow-[0_24px_44px_rgba(255,255,255,0.18)] focus-visible:outline-accwise-green",
   secondary:
     "border border-accwise-blue/24 bg-white/58 text-accwise-navy shadow-[0_12px_28px_rgba(22,37,66,0.12)] backdrop-blur-xl hover:border-accwise-green/55 hover:bg-white/76 hover:text-accwise-navy focus-visible:outline-accwise-blue",
   light:

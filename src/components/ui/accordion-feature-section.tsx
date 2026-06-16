@@ -130,7 +130,7 @@ const Feature197 = ({
                       ? { opacity: [0, 0.42, 0], scale: [0.62, 1.06, 1.28], y: [34, -8, -18] }
                       : { opacity: 0, scale: 0.62, y: 34 }
                   }
-                  className="pointer-events-none absolute bottom-8 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(125,211,252,0.46),rgba(33,75,112,0.18)_48%,transparent_72%)] blur-md"
+                  className="pointer-events-none absolute bottom-8 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(76,157,225,0.46),rgba(76,157,225,0.18)_48%,transparent_72%)] blur-md"
                   initial={false}
                   transition={{
                     duration: 0.82,
@@ -139,10 +139,10 @@ const Feature197 = ({
                 />
                 <Image
                   alt="ACCWISE Accountants logo mark"
-                  className="relative h-auto w-[78%] object-contain drop-shadow-[0_24px_48px_rgba(33,75,112,0.14)]"
-                  height={360}
-                  src="/assets/brand/accwise-logo-mark.svg"
-                  width={360}
+                  className="relative h-auto w-[78%] object-contain drop-shadow-[0_24px_48px_rgba(76,157,225,0.14)]"
+                  height={720}
+                  src="/assets/brand/accwise-logo-mark.png"
+                  width={720}
                 />
               </motion.div>
             </div>

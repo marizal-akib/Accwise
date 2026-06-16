@@ -132,10 +132,10 @@ export default function Home() {
       <section
         className="relative min-h-screen overflow-hidden bg-accwise-navy bg-cover bg-center text-white"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88) 0%, rgba(33,75,112,0.68) 45%, rgba(22,37,66,0.25) 100%), url(${heroImage})`,
+          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88) 0%, rgba(76,157,225,0.42) 45%, rgba(22,37,66,0.25) 100%), url(${heroImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(47,111,53,0.32),transparent_28%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(100,183,59,0.28),transparent_28%)]" />
         <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-5 pb-28 pt-32 sm:px-6 lg:px-8 lg:pt-28">
           <div className="max-w-3xl">
             <p className="inline-flex items-center rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80 backdrop-blur">

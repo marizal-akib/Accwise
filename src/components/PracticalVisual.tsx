@@ -74,9 +74,9 @@ export function PracticalVisual({ imageUrl }: PracticalVisualProps) {
         <Image
           alt="ACCWISE Accountants"
           className="h-auto w-full"
-          height={120}
-          src="/assets/brand/accwise-logo.svg"
-          width={520}
+          height={1093}
+          src="/assets/brand/accwise-logo.png"
+          width={1398}
         />
         <p className="mt-5 text-sm leading-6 text-accwise-charcoal/68">
           Trusted, confidential and professional accountancy support, with

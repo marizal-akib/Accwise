@@ -3,15 +3,17 @@
 :root {
   --background: #ffffff;
   --foreground: #1f2921;
-  --accwise-blue: #214b70;
-  --accwise-green: #2f6f35;
+  --accwise-blue: #4c9de1;
+  --accwise-green: #64b73b;
+  --accwise-word-blue: #3d8aea;
+  --accwise-word-green: #5ca535;
   --accwise-navy: #162542;
   --accwise-charcoal: #1f2921;
   --accwise-offwhite: #e8e5dd;
   --accwise-border: #d9ded5;
   --card: #ffffff;
   --card-foreground: #1f2921;
-  --primary: #214b70;
+  --primary: #4c9de1;
   --primary-foreground: #ffffff;
   --secondary: #e8e5dd;
   --secondary-foreground: #162542;
@@ -23,7 +25,7 @@
   --destructive-foreground: #ffffff;
   --border: #d9ded5;
   --input: #d9ded5;
-  --ring: #2f6f35;
+  --ring: #64b73b;
 }
 
 @theme inline {
@@ -44,8 +46,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-accwise-blue: #214b70;
-  --color-accwise-green: #2f6f35;
+  --color-accwise-blue: #4c9de1;
+  --color-accwise-green: #64b73b;
+  --color-accwise-word-blue: #3d8aea;
+  --color-accwise-word-green: #5ca535;
   --color-accwise-navy: #162542;
   --color-accwise-charcoal: #1f2921;
   --color-accwise-offwhite: #e8e5dd;
@@ -70,7 +74,7 @@ button {
 }
 
 ::selection {
-  background: rgba(47, 111, 53, 0.18);
+  background: rgba(100, 183, 59, 0.18);
 }
 
 .accwise-wave-static {

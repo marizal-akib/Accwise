@@ -60,10 +60,10 @@ export default function ContactPage() {
       <section
         className="relative flex min-h-[590px] items-center justify-center overflow-hidden bg-accwise-navy bg-cover bg-center px-5 pb-28 pt-32 text-center text-white sm:min-h-[640px] sm:px-6 lg:px-8"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88), rgba(33,75,112,0.58), rgba(22,37,66,0.72)), url(${contactHeroImage})`,
+          backgroundImage: `linear-gradient(90deg, rgba(22,37,66,0.88), rgba(76,157,225,0.36), rgba(22,37,66,0.72)), url(${contactHeroImage})`,
         }}
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(47,111,53,0.24),transparent_30%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(100,183,59,0.22),transparent_30%)]" />
         <div className="relative mx-auto max-w-4xl">
           <p className="mx-auto inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/78 backdrop-blur">
             <Mail className="size-4" aria-hidden="true" />

@@ -12,10 +12,10 @@ export function SiteFooter() {
           <div>
             <Image
               alt="ACCWISE Accountants"
-              className="h-auto w-64 max-w-full"
-              height={72}
-              src="/assets/brand/accwise-logo.svg"
-              width={320}
+              className="h-auto w-56 max-w-full"
+              height={1093}
+              src="/assets/brand/accwise-logo.png"
+              width={1398}
             />
             <p className="mt-5 max-w-md text-sm leading-7 text-accwise-charcoal/72">
               Practical accountancy, bookkeeping, payroll, VAT and advisory
