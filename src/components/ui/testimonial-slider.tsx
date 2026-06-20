@@ -249,8 +249,8 @@ export default function TestimonialSlider({
                       <span className="inline-flex rounded-full bg-accwise-green/10 px-3 py-1 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accwise-green">
                         CLIENT SITUATION
                       </span>
-                      <p className="mt-6 text-lg font-semibold leading-8 text-accwise-navy">
-                        &ldquo;{testimonial.quote}&rdquo;
+                      <p className="mt-6 text-base font-semibold leading-7 text-accwise-navy sm:text-lg sm:leading-8">
+                        {testimonial.quote}
                       </p>
                     </div>
                     <div className="relative mt-auto flex items-center gap-4 pt-8">

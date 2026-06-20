@@ -35,44 +35,44 @@ const serviceGalleryItems: GalleryItem[] = serviceAreas.map((service, index) => 
 
 const clientSituations: Testimonial[] = [
   {
-    context: "Self-assessment route",
+    context: "Tax return route",
     id: 1,
-    name: "Sole trader enquiry",
+    name: "Self-assessment support",
     quote:
-      "A practical route for discussing tax-return deadlines, records, allowable costs, and the next step for filing.",
-    status: "Common enquiry route",
+      "Tax return support for sole traders, landlords and individuals who need records checked, expenses reviewed and deadlines handled.",
+    status: "Discuss with ACCWISE",
   },
   {
-    context: "Limited company route",
+    context: "Company accounts route",
     id: 2,
-    name: "Company director enquiry",
+    name: "Limited company support",
     quote:
-      "Support for company accounts, corporation tax, confirmation statements, and clear records for directors.",
-    status: "Common enquiry route",
+      "Company accounts, corporation tax, confirmation statement reminders, director records and practical filing support.",
+    status: "Discuss with ACCWISE",
   },
   {
     context: "Payroll route",
     id: 3,
-    name: "Employer enquiry",
+    name: "Payroll support",
     quote:
-      "A route for discussing payroll management, employee records, payslips, and HMRC payroll obligations.",
-    status: "Common enquiry route",
+      "Payroll setup and ongoing support for employee records, payslips, PAYE submissions, workplace pension details and HMRC deadlines.",
+    status: "Discuss with ACCWISE",
   },
   {
-    context: "VAT route",
+    context: "VAT records route",
     id: 4,
-    name: "VAT business enquiry",
+    name: "VAT and MTD support",
     quote:
-      "Help for VAT registration questions, returns, Making Tax Digital, and keeping VAT records organised.",
-    status: "Common enquiry route",
+      "VAT registration, returns, Making Tax Digital records, bookkeeping checks and support for keeping VAT responsibilities organised.",
+    status: "Discuss with ACCWISE",
   },
   {
-    context: "Business advisory route",
+    context: "Business support route",
     id: 5,
-    name: "Business owner enquiry",
+    name: "Business support",
     quote:
-      "A practical conversation for understanding business support needs before wider advisory work is agreed.",
-    status: "Common enquiry route",
+      "A practical first conversation about bookkeeping, cash-flow records, company admin and the right next step for wider business support.",
+    status: "Discuss with ACCWISE",
   },
 ];
 
@@ -151,7 +151,7 @@ export default function Home() {
             <div className="mt-7 flex flex-col gap-4 sm:mt-9 sm:flex-row sm:items-center">
               <CtaLink
                 className="w-full sm:w-auto"
-                href="/contact"
+                href="/contact#callback-form"
                 size="lg"
               >
                 Request a callback
@@ -218,9 +218,9 @@ export default function Home() {
       </section>
 
       <TestimonialSlider
-        description="These examples show common reasons visitors contact ACCWISE, without presenting unverified reviews or case-study claims."
+        description="Choose the route closest to your situation, then request a callback so ACCWISE can talk through records, deadlines and next steps."
         eyebrow="Common enquiry routes"
-        heading="Situations ACCWISE can help you discuss"
+        heading="Common reasons to contact ACCWISE"
         testimonials={clientSituations}
       />
 
@@ -241,7 +241,7 @@ export default function Home() {
             Accounting Health Check.
           </p>
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <CtaLink href="/contact" variant="light">
+            <CtaLink href="/contact#callback-form" variant="light">
               Request a callback
             </CtaLink>
             <CtaLink href="/free-consultation" variant="light">

@@ -48,7 +48,7 @@ export default function AboutPage() {
       <PageHero
         actions={
           <>
-            <CtaLink href="/contact" size="lg">
+            <CtaLink href="/contact#callback-form" size="lg">
               Request a callback
             </CtaLink>
             <CtaLink href="/services" size="lg" variant="light">
@@ -251,7 +251,7 @@ export default function AboutPage() {
               Ready to speak to ACCWISE?
             </h2>
           </div>
-          <CtaLink href="/contact">Request a callback</CtaLink>
+          <CtaLink href="/contact#callback-form">Request a callback</CtaLink>
         </div>
       </section>
     </>

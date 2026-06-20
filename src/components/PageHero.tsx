@@ -1,4 +1,5 @@
 import { AnimatedWaveDivider } from "@/components/AnimatedWaveDivider";
+import { HeroContentReveal } from "@/components/ui/reveal-motion";
 
 type PageHeroProps = {
   title: string;
@@ -6,6 +7,7 @@ type PageHeroProps = {
   eyebrow?: string;
   image?: string;
   actions?: React.ReactNode;
+  animated?: boolean;
   children?: React.ReactNode;
   variant?: "simple" | "image";
 };
@@ -16,10 +18,33 @@ export function PageHero({
   eyebrow,
   image,
   actions,
+  animated = true,
   children,
   variant = "simple",
 }: PageHeroProps) {
   if (variant === "image") {
+    const content = (
+      <>
+        {eyebrow ? (
+          <p className="inline-flex rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/76 backdrop-blur">
+            {eyebrow}
+          </p>
+        ) : null}
+        <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
+          {title}
+        </h1>
+        <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76 sm:text-xl sm:leading-9">
+          {description}
+        </p>
+        {actions ? (
+          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+            {actions}
+          </div>
+        ) : null}
+        {children ? <div className="mt-10">{children}</div> : null}
+      </>
+    );
+
     return (
       <section
         className="relative flex min-h-[570px] items-center overflow-hidden bg-accwise-navy bg-cover bg-center px-5 pb-28 pt-32 text-white sm:min-h-[620px] sm:px-6 lg:px-8"
@@ -29,23 +54,7 @@ export function PageHero({
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(100,183,59,0.12),transparent_28%)]" />
         <div className="relative mx-auto w-full max-w-6xl">
-          {eyebrow ? (
-            <p className="inline-flex rounded-full border border-white/16 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white/76 backdrop-blur">
-              {eyebrow}
-            </p>
-          ) : null}
-          <h1 className="mt-6 max-w-4xl text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-white/76 sm:text-xl sm:leading-9">
-            {description}
-          </p>
-          {actions ? (
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              {actions}
-            </div>
-          ) : null}
-          {children ? <div className="mt-10">{children}</div> : null}
+          {animated ? <HeroContentReveal>{content}</HeroContentReveal> : content}
         </div>
         <AnimatedWaveDivider variant="white" />
       </section>

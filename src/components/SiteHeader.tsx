@@ -208,7 +208,7 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <LiquidButtonLink
-            href="/contact"
+            href="/contact#callback-form"
             size="sm"
             variant={isOnHero ? "light" : "primary"}
           >
@@ -298,7 +298,7 @@ export function SiteHeader() {
 
             <LiquidButtonLink
               className="mt-8 w-full"
-              href="/contact"
+              href="/contact#callback-form"
               onClick={closeMenu}
               variant="white"
             >

@@ -168,7 +168,7 @@ test("home page includes the Crafto-inspired section sequence", () => {
     "Understanding your accountancy service routes.",
     "WHO WE HELP",
     "Accounting support for the businesses and individuals we work with",
-    "Situations ACCWISE can help you discuss",
+    "Common reasons to contact ACCWISE",
     "faqFeatureItems",
     "Ready for clearer accounts and tax support?",
   ].forEach((copy) => {
@@ -250,12 +250,21 @@ test("homepage client situations section is factual and animated", () => {
 
   [
     "clientSituations",
-    "Situations ACCWISE can help you discuss",
+    "Common reasons to contact ACCWISE",
     "Common enquiry routes",
-    "These examples show common reasons visitors contact ACCWISE",
+    "Choose the route closest to your situation, then request a callback so ACCWISE can talk through records, deadlines and next steps.",
+    "Self-assessment support",
+    "Limited company support",
+    "Payroll support",
+    "VAT and MTD support",
+    "Business support",
+    "Discuss with ACCWISE",
   ].forEach((copy) => {
     assert.match(page, new RegExp(copy.replaceAll("?", "\\?")));
   });
+
+  assert.doesNotMatch(page, /without presenting unverified reviews/);
+  assert.doesNotMatch(page, /case-study claims/);
 
   [
     "TestimonialSlider",
@@ -266,6 +275,8 @@ test("homepage client situations section is factual and animated", () => {
     "prefers-reduced-motion",
     "CLIENT SITUATION",
     "client-situation-slider",
+    "text-base font-semibold leading-7",
+    "sm:text-lg sm:leading-8",
   ].forEach((copy) => {
     assert.match(slider, new RegExp(copy.replaceAll("-", "\\-")));
   });
@@ -680,6 +691,79 @@ test("contact page follows the Crafto-inspired safe contact structure", () => {
   });
 });
 
+test("contact and services use restrained premium reveal motion", () => {
+  const revealMotion = read("src/components/ui/reveal-motion.tsx");
+  const contactPage = read("src/app/contact/page.tsx");
+  const servicesPage = read("src/app/services/page.tsx");
+  const pageHero = read("src/components/PageHero.tsx");
+  const leadForm = read("src/components/LeadForm.tsx");
+
+  [
+    "\"use client\"",
+    "framer-motion",
+    "HeroContentReveal",
+    "RevealGroup",
+    "RevealItem",
+    "useInView",
+    "useReducedMotion",
+    "staggerChildren",
+    "y: 28",
+    "duration: 0.85",
+    "data-accwise-reveal-group",
+    "data-accwise-reveal-item",
+  ].forEach((copy) => {
+    assert.match(revealMotion, new RegExp(escapeRegExp(copy)));
+  });
+
+  assert.match(contactPage, /import \{ HeroContentReveal, RevealGroup, RevealItem \}/);
+  assert.match(contactPage, /<HeroContentReveal>/);
+  assert.match(contactPage, /href="#callback-form"/);
+  assert.match(contactPage, /href=\{`mailto:\$\{contactDetails\.email\}`\}/);
+  assert.match(contactPage, /<RevealGroup/);
+  assert.match(contactPage, /<RevealItem/);
+  assert.match(contactPage, /via-white\/55/);
+  assert.match(contactPage, /group-hover:left-\[120%\]/);
+
+  assert.match(pageHero, /animated\?: boolean/);
+  assert.match(pageHero, /animated = true/);
+  assert.match(pageHero, /<HeroContentReveal>/);
+  assert.match(servicesPage, /import \{ RevealGroup, RevealItem \}/);
+  assert.match(servicesPage, /<RevealGroup/);
+  assert.match(servicesPage, /<RevealItem/);
+  assert.match(servicesPage, /group-hover:scale-\[1\.04\]/);
+  assert.match(servicesPage, /via-white\/60/);
+
+  assert.match(leadForm, /mailto:info@accwise\.co\.uk/);
+  assert.doesNotMatch(leadForm, /fetch\(/);
+  assert.doesNotMatch(contactPage, /fetch\(/);
+  assert.doesNotMatch(servicesPage, /fetch\(/);
+});
+
+test("callback CTAs route directly to the callback form", () => {
+  const callbackScroller = read("src/components/CallbackFormScrollHandler.tsx");
+  const header = read("src/components/SiteHeader.tsx");
+  const homePage = read("src/app/page.tsx");
+  const aboutPage = read("src/app/about/page.tsx");
+  const servicesPage = read("src/app/services/page.tsx");
+  const contactPage = read("src/app/contact/page.tsx");
+
+  [
+    header,
+    homePage,
+    aboutPage,
+    servicesPage,
+  ].forEach((source) => {
+    assert.match(source, /href="\/contact#callback-form"/);
+  });
+
+  assert.match(contactPage, /<CallbackFormScrollHandler \/>/);
+  assert.match(contactPage, /href="#callback-form"/);
+  assert.match(callbackScroller, /usePathname/);
+  assert.match(callbackScroller, /scrollIntoView/);
+  assert.match(callbackScroller, /#callback-form/);
+  assert.match(callbackScroller, /\/contact#callback-form/);
+});
+
 test("header exposes Crafto-style services dropdown and shared service anchors", () => {
   const header = read("src/components/SiteHeader.tsx");
   const siteData = read("src/lib/site-data.ts");
@@ -710,11 +794,16 @@ test("about and services use Crafto-style inner hero and wave divider", () => {
 
 test("services page uses stable service card anchors without the homepage carousel", () => {
   const servicesPage = read("src/app/services/page.tsx");
+  const revealMotion = read("src/components/ui/reveal-motion.tsx");
 
   assert.match(servicesPage, /service\.slug/);
   assert.match(servicesPage, /id=\{service\.slug\}/);
   assert.match(servicesPage, /Accounting service routes/);
   assert.match(servicesPage, /Need help choosing the right accounting support\?/);
+  assert.match(servicesPage, /fallbackVisible/);
+  assert.match(revealMotion, /fallbackVisible\?: boolean/);
+  assert.match(revealMotion, /fallbackDelayMs\?: number/);
+  assert.match(revealMotion, /setFallbackVisible\(true\)/);
   assert.doesNotMatch(servicesPage, /<Gallery6/);
 });
 
