@@ -65,25 +65,6 @@ export default function ServicesPage() {
         variant="image"
       />
 
-      <section className="bg-white">
-        <RevealGroup className="mx-auto grid w-full max-w-6xl gap-4 px-5 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
-          {commitments.map((commitment) => (
-            <RevealItem key={commitment}>
-              <article className="rounded-lg bg-white p-5 shadow-[0_16px_42px_rgba(22,37,66,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(22,37,66,0.11)]">
-                <CheckCircle2
-                  aria-hidden="true"
-                  className="size-6 text-accwise-green"
-                  strokeWidth={1.9}
-                />
-                <p className="mt-4 text-sm font-semibold leading-6 text-accwise-navy">
-                  {commitment}
-                </p>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
-      </section>
-
       <section className="bg-[#f3f5f8]">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-6 lg:px-8 lg:py-24">
           <RevealGroup className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
@@ -141,10 +122,10 @@ export default function ServicesPage() {
                     </p>
                     <CtaLink
                       className="mt-6 w-full"
-                      href="/contact#callback-form"
+                      href={`/services/${service.slug}`}
                       variant="secondary"
                     >
-                      Ask about this service
+                      Learn more
                     </CtaLink>
                   </div>
                 </article>
@@ -152,6 +133,25 @@ export default function ServicesPage() {
             ))}
           </RevealGroup>
         </div>
+      </section>
+
+      <section className="bg-white">
+        <RevealGroup className="mx-auto grid w-full max-w-6xl gap-4 px-5 py-12 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+          {commitments.map((commitment) => (
+            <RevealItem key={commitment}>
+              <article className="rounded-lg bg-white p-5 shadow-[0_16px_42px_rgba(22,37,66,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(22,37,66,0.11)]">
+                <CheckCircle2
+                  aria-hidden="true"
+                  className="size-6 text-accwise-green"
+                  strokeWidth={1.9}
+                />
+                <p className="mt-4 text-sm font-semibold leading-6 text-accwise-navy">
+                  {commitment}
+                </p>
+              </article>
+            </RevealItem>
+          ))}
+        </RevealGroup>
       </section>
 
       <section className="bg-accwise-navy text-white">

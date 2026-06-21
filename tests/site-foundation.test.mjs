@@ -40,6 +40,7 @@ test("phase 1 required routes exist", () => {
   [
     "src/app/page.tsx",
     "src/app/services/page.tsx",
+    "src/app/services/[slug]/page.tsx",
     "src/app/about/page.tsx",
     "src/app/faqs/page.tsx",
     "src/app/contact/page.tsx",
@@ -199,10 +200,14 @@ test("site data includes accountancy card services and commitments", () => {
     "HMRC Investigations and Enquiries",
     "Business Advisory",
       "Benefit Advice",
-      "Self-employed & companies accepted",
-      "Remote & on site working available",
-      "Fixed and/or variable pricing structures",
-      "Trusted, confidential & professional",
+    "Self-employed & companies accepted",
+    "Remote & on site working available",
+    "Fixed and/or variable pricing structures",
+    "Trusted, confidential & professional",
+    "discussionPoints",
+    "recordsToPrepare",
+    "firstConversationSteps",
+    "callbackCopy",
   ].forEach((copy) => {
     assert.match(siteData, new RegExp(copy.replaceAll("&", "\\&")));
   });
@@ -686,9 +691,10 @@ test("contact page follows the Crafto-inspired safe contact structure", () => {
   assert.match(leadForm, /variant\?: "boxed" \| "minimal"/);
   assert.match(leadForm, /variant = "boxed"/);
   assert.match(leadForm, /variant === "minimal"/);
-  ["/", "/about", "/services", "/contact"].forEach((route) => {
+  ["/", "/about", "/contact"].forEach((route) => {
     assert.match(header, new RegExp(`pathname === "${route.replace("/", "\\/")}"`));
   });
+  assert.match(header, /pathname\.startsWith\("\/services"\)/);
 });
 
 test("contact and services use restrained premium reveal motion", () => {
@@ -770,6 +776,8 @@ test("header exposes Crafto-style services dropdown and shared service anchors",
 
   assert.match(siteData, /slug: "self-assessment-tax-return"/);
   assert.match(siteData, /serviceNavLinks/);
+  assert.match(siteData, /href: `\/services\/\$\{service\.slug\}`/);
+  assert.doesNotMatch(siteData, /href: `\/services#\$\{service\.slug\}`/);
   assert.match(header, /ServicesDropdown/);
   assert.match(header, /group\/services/);
   assert.match(header, /href="\/services"/);
@@ -798,13 +806,46 @@ test("services page uses stable service card anchors without the homepage carous
 
   assert.match(servicesPage, /service\.slug/);
   assert.match(servicesPage, /id=\{service\.slug\}/);
+  assert.match(servicesPage, /href=\{`\/services\/\$\{service\.slug\}`\}/);
+  assert.match(servicesPage, /Learn more/);
+  assert.doesNotMatch(servicesPage, /Ask about this service/);
   assert.match(servicesPage, /Accounting service routes/);
   assert.match(servicesPage, /Need help choosing the right accounting support\?/);
   assert.match(servicesPage, /fallbackVisible/);
   assert.match(revealMotion, /fallbackVisible\?: boolean/);
   assert.match(revealMotion, /fallbackDelayMs\?: number/);
   assert.match(revealMotion, /setFallbackVisible\(true\)/);
+  assert.ok(
+    servicesPage.indexOf("serviceAreas.map") < servicesPage.indexOf("commitments.map"),
+    "commitments should render after service cards",
+  );
   assert.doesNotMatch(servicesPage, /<Gallery6/);
+});
+
+test("service detail pages are statically generated with safe service content", () => {
+  const serviceDetailPage = read("src/app/services/[slug]/page.tsx");
+  const siteData = read("src/lib/site-data.ts");
+
+  [
+    "generateStaticParams",
+    "generateMetadata",
+    "notFound()",
+    "PageHero",
+    "discussionPoints",
+    "recordsToPrepare",
+    "firstConversationSteps",
+    "Request a callback",
+    "/contact#callback-form",
+    "/services/self-assessment-tax-return",
+    "/services/payroll-management",
+    "/services/vat",
+  ].forEach((copy) => {
+    assert.match(`${serviceDetailPage}\n${siteData}`, new RegExp(escapeRegExp(copy)));
+  });
+
+  assert.match(serviceDetailPage, /params: Promise<\{ slug: string \}>/);
+  assert.match(serviceDetailPage, /serviceAreas\.map\(\(service\) => \(\{ slug: service\.slug \}\)\)/);
+  assert.doesNotMatch(serviceDetailPage, /fetch\(/);
 });
 
 test("about page follows the Crafto-inspired image, process, and safety structure", () => {

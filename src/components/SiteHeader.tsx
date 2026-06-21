@@ -43,7 +43,7 @@ function ServicesDropdown({
   pathname: string;
 }) {
   const [open, setOpen] = useState(false);
-  const active = pathname === "/services";
+  const active = pathname.startsWith("/services");
 
   function closeDropdown() {
     setOpen(false);
@@ -123,7 +123,7 @@ export function SiteHeader() {
   const overlaysHero =
     pathname === "/" ||
     pathname === "/about" ||
-    pathname === "/services" ||
+    pathname.startsWith("/services") ||
     pathname === "/contact";
   const isOnHero = overlaysHero && !scrolled && !open;
 
