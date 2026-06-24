@@ -22,6 +22,13 @@ export const metadata: Metadata = {
   },
   description:
     "ACCWISE Accountants provides practical accountancy, self-assessment, bookkeeping, tax, payroll, VAT, CIS and business support for modern UK clients.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({

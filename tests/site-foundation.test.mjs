@@ -100,12 +100,30 @@ test("ACCWISE official PNG brand assets replace provisional draft assets", () =>
 test("global layout uses ACCWISE metadata and shared chrome", () => {
   const layout = read("src/app/layout.tsx");
   const header = read("src/components/SiteHeader.tsx");
+  const favicon = readFileSync(path.join(root, "src/app/favicon.ico"));
 
   assert.match(layout, /ACCWISE Accountants/);
+  assert.match(layout, /icons:/);
+  assert.match(layout, /\/favicon\.ico/);
+  assert.match(layout, /\/icon\.png/);
+  assert.match(layout, /\/apple-icon\.png/);
   assert.match(layout, /<SiteHeader \/>/);
   assert.match(layout, /<SiteFooter \/>/);
   assert.match(header, /Request a callback/);
   assert.doesNotMatch(layout, /Create Next App/);
+
+  [
+    "src/app/favicon.ico",
+    "src/app/icon.png",
+    "src/app/apple-icon.png",
+  ].forEach((filePath) => {
+    const assetPath = path.join(root, filePath);
+    assert.ok(existsSync(assetPath), `${filePath} should exist`);
+    assert.ok(statSync(assetPath).size > 1000, `${filePath} should not be empty`);
+  });
+
+  assert.equal(favicon.readUInt16LE(2), 1);
+  assert.equal(favicon.readUInt16LE(4), 4);
 });
 
 test("home page replaces the scaffold with ACCWISE copy", () => {
